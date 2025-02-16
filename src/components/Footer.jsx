@@ -4,7 +4,7 @@ import "./Footer.css"; // Ensure styles are imported
 
 const Footer = () => {
   return (
-    <footer id="footer" className="content-block">
+    <footer id="footer" className="site-footer">
       <div className="container">
         <div className="footer-row">
           <div className="footer-left">

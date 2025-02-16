@@ -1,0 +1,87 @@
+.custom-link {
+    color: #007bff; 
+    text-decoration: none; 
+    font-weight: bold;
+    padding: 5px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .custom-link:hover {
+    color: #ff4500; /* Change color on hover */
+    text-decoration: underline; /* Add underline on hover */
+  }
+  
+  .open-modal-button {
+    background-color: #940731 !important; 
+    color: white !important;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px !important;
+    font-size: 18px !important;
+    font-weight: bold ;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .open-modal-button:hover {
+    background-color: #a83250 !important;
+    transform: scale(1.05);
+  }
+  
+  /* Modal container */
+.custom-modal .modal-content {
+  border-radius: 12px; /* Rounded corners */
+  padding: 20px;
+  background-color: #f8f8f8; /* Light background */
+}
+
+/* Modal Header */
+.custom-modal .modal-header {
+  background-color: #940731; /* Maroon color */
+  color: white;
+  border-radius: 5px;
+}
+
+/* Modal Title */
+.custom-modal .modal-title {
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Modal Body */
+.custom-modal .modal-body {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Modal Footer */
+.custom-modal .modal-footer {
+  background-color: #bd0e0e00; /* Light gray */
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 15px;
+}
+
+/* Upload Button inside Modal */
+.upload-button {
+  background-color: #940731 !important; /* Green */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px !important;
+  font-size: 16px;
+  cursor: pointer !important;
+  transition: background-color 0.3s;
+}
+
+.upload-button:hover {
+  background-color: #aa073b !important;
+}
+
+/* Close Button */
+.modal-footer .btn-secondary {
+  background-color: #6c757d; /* Bootstrap gray */
+  border-radius: 8px;
+}

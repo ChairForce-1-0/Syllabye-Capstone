@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { auth, signInWithEmailAndPassword } from "../Firebase";
+import { auth, signInWithEmailAndPassword, sendPasswordResetEmail } from "../Firebase";
 import { Link, useNavigate } from "react-router-dom";
 import "./../components/Auth.css";
 
@@ -8,6 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,10 +22,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setSuccessMessage("");
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      
+
       if (rememberMe) {
         localStorage.setItem("rememberedEmail", email);
       } else {
@@ -33,7 +35,20 @@ const Login = () => {
 
       navigate("/");
     } catch (err) {
-      setError(err.message);
+      setError("Invalid email or password");
+    }
+  };
+
+  const handlePasswordReset = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccessMessage("");
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setSuccessMessage("Password reset email sent! Please check your inbox.");
+    } catch (err) {
+      setError("Error resetting password. Please check the email address.");
     }
   };
 
@@ -42,6 +57,7 @@ const Login = () => {
       <div className="auth-container">
         <h2>Login</h2>
         {error && <p style={{ color: "red" }}>{error}</p>}
+        {successMessage && <p style={{ color: "green" }}>{successMessage}</p>} {/* Success message */}
         <form onSubmit={handleSubmit}>
           <input
             type="email"
@@ -71,7 +87,9 @@ const Login = () => {
 
           <button type="submit">Continue</button>
         </form>
-        <p>Don't have an account? <Link to="/signup">Sign up now</Link>.</p>
+
+        <p>Forgot your password?  <Link to="#" onClick={handlePasswordReset} className="reset-password-link">Reset it here</Link></p>
+        <p>Don't have an account? <Link to="/signup">Sign up now</Link></p>
       </div>
     </div>
   );

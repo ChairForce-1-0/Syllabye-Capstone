@@ -1,0 +1,73 @@
+.pdf-container {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Ensure the grid is centered within its container */
+.pdf-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  justify-content: center; /* Center grid items horizontally */
+  align-items: center; /* Center grid items vertically */
+  width: 100%;
+  max-width: 900px; /* Ensures even spacing and prevents extra stretching */
+  margin: 0 auto; /* Ensures it stays centered */
+  place-items: center; /* Extra centering assistance */
+}
+
+/* Ensure PDF blocks remain consistently sized */
+.pdf-block {
+  background-color: #800020;
+  color: white;
+  padding: 20px;
+  width: 220px; /* Adjust size to be even */
+  height: 300px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Hover effect */
+.pdf-block:hover {
+  background-color: #a83250;
+  transform: scale(1.05);
+}
+
+/* Make sure the grid aligns properly on different screen sizes */
+@media (max-width: 1024px) {
+  .pdf-list {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    max-width: 700px; /* Adjust grid width for better centering */
+  }
+}
+
+@media (max-width: 768px) {
+  .pdf-list {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pdf-list {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    max-width: 400px;
+  }
+}
+
+.title {
+  font-size: 4rem;
+  margin-top: 5rem;
+}

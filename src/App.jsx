@@ -8,6 +8,8 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const App = () => {
   return (
@@ -26,7 +28,7 @@ const App = () => {
         </Routes>
       </div>
 
-      <Footer /> {/* Footer is always visible */}
+      <Footer /> 
     </>
   );
 };
