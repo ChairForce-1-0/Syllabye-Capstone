@@ -6,17 +6,20 @@ import React from 'react'; // Explicit React import
 
 const currentTeamMembers = [
   // Current Team
-  { imgSrc: "/images/nick-portrait.png", name: "nick", link: "https://krzysiaknick.github.io/" },
+  { imgSrc: "/images/ChairForceOne-Logo.png", name: "chair", link: "https://github.com/ChairForce-1-0/Syllabye-Capstone" },
   { imgSrc: "/images/irving-portrait.png", name: "irving", link: "https://irvingfsanchez.github.io/IrvingFSanchez-Professional-Website/" },
+  { imgSrc: "/images/nick-portrait.png", name: "nick", link: "https://krzysiaknick.github.io/" },
   { imgSrc: "/images/jaiden-portrait.png", name: "jaiden", link: "https://jtleon301.github.io/" },
   { imgSrc: "/images/bryan-portrait.png", name: "bryan", link: "https://bryana55.github.io/" },
   
   // The Dev Den
+  { imgSrc: "/images/dev-den.png", name: "devden", link: "https://github.com/ChairForce-1-0/Syllabye-Capstone" },
   { imgSrc: "/images/ethan.png", name: "ethan", link: "#" },
   { imgSrc: "/images/anon.png", name: "yash", link: "#" },
   { imgSrc: "/images/Joshua-V.png", name: "joshua", link: "#" },
   
   // Previous Members
+  { imgSrc: "/images/krabby.png", name: "krabby", link: "https://github.com/ChairForce-1-0/Syllabye-Capstone" },
   { imgSrc: "/images/josh.png", name: "josh", link: "#" },
   { imgSrc: "/images/kevin.png", name: "kevin", link: "#" },
   { imgSrc: "/images/logan.png", name: "logan", link: "#" },
