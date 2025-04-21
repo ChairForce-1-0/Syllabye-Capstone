@@ -259,7 +259,7 @@ h2 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(117, 2, 2, 0.548);
+  background: rgba(209, 4, 4, 0.548);
   border: none;
   color: var(--white-100);
   padding: var(--space-sm);
@@ -277,7 +277,7 @@ h2 {
 }
 
 .marquee-arrow:hover {
-  background: rgba(128, 0, 0, 0);
+  background: rgba(255, 255, 255, 0.568);
   transform: translateY(-50%) scale(1.1);
   z-index: 906;
 }

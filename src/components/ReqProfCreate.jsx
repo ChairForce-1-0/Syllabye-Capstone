@@ -3,12 +3,14 @@ import { auth, db } from "../Firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { Alert, Spinner, Container, Button } from "react-bootstrap";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ReqProfCreate = ({ children }) => {
   const navigate = useNavigate();
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
@@ -42,7 +44,7 @@ const ReqProfCreate = ({ children }) => {
     return (
       <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "50vh" }}>
         <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
+          <span className="visually-hidden">{t("reqProf.loading")}</span>
         </Spinner>
       </Container>
     );
@@ -52,10 +54,10 @@ const ReqProfCreate = ({ children }) => {
     return (
       <Container className="mt-4">
         <Alert variant="danger" dismissible>
-          <Alert.Heading>Access Denied</Alert.Heading>
-          <p>You must be a professor to create new syllabi. If you believe this is an error, please contact support.</p>
-          <Button onClick={() => navigate("/Contact")} variant='dark'>  
-              Contact Page
+          <Alert.Heading>{t("reqProf.accessDenied")}</Alert.Heading>
+          <p>{t("reqProf.errorMessage")}</p>
+          <Button onClick={() => navigate("/Contact")} variant="dark">
+            {t("reqProf.contactButton")}
           </Button>
         </Alert>
       </Container>

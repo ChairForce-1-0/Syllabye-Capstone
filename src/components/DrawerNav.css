@@ -17,8 +17,10 @@
 }
 
 .drawer-right h2 {
+    font-size: 2rem;
     color: var(--light-text);
-    font-family: 'Alegreya Sans', sans-serif;
+    font-family: serif;
+    text-align: left;
     border-bottom: 2px solid var(--light-text);
     padding-bottom: var(--space-sm);
     margin-bottom: var(--space-md);

@@ -1,14 +1,16 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { useTranslation } from "react-i18next";
+import "./AboutPage.css";
 import "./DrawerNav.css";
 
 const DrawerNav = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
+  const { t } = useTranslation();
 
   const auth = getAuth();
   const db = getFirestore();
@@ -35,11 +37,13 @@ const DrawerNav = () => {
   };
 
   const handleLogout = () => {
-    signOut(auth).then(() => {
-      toggleDrawer();
-    }).catch((error) => {
-      console.error("Error signing out: ", error);
-    });
+    signOut(auth)
+      .then(() => {
+        toggleDrawer();
+      })
+      .catch((error) => {
+        console.error("Error signing out: ", error);
+      });
   };
 
   return (
@@ -58,28 +62,28 @@ const DrawerNav = () => {
             <i className="fa fa-times-circle fa-2x"></i>
           </button>
         </div>
-        <h2>Navigate</h2>
+        <h2>{t("drawer.navigate")}</h2>
         <nav>
           <ul className="nav nav-pills nav-stacked">
             {isLoggedIn && (
               <li className="nav-item user-greeting">
-                <span>Hello, {userName}!</span>
+                <span>{t("drawer.hello")}, {userName}!</span>
               </li>
             )}
-            <li><Link to="/" onClick={toggleDrawer}><i className="fa fa-home"></i> <span>Home</span></Link></li>
-            <li><Link to="/dashboard" onClick={toggleDrawer}><i className="fa fa-gear"></i> <span>Dashboard</span></Link></li>
-            <li><Link to="/create" onClick={toggleDrawer}><i className="fa fa-gear"></i> <span>Create</span></Link></li>
-            <li><Link to="/browse" onClick={toggleDrawer}><i className="fa fa-heart"></i> <span>Browse</span></Link></li>
-            <li><Link to="/about" onClick={toggleDrawer}><i className="fa fa-bookmark"></i> <span>About</span></Link></li>
-            <li><Link to="/contact" onClick={toggleDrawer}><i className="fa fa-phone-square"></i> <span>Contact</span></Link></li>
+            <li><Link to="/" onClick={toggleDrawer}><i className="fa fa-home"></i> <span>{t("drawer.home")}</span></Link></li>
+            <li><Link to="/dashboard" onClick={toggleDrawer}><i className="fa fa-gear"></i> <span>{t("drawer.dashboard")}</span></Link></li>
+            <li><Link to="/create" onClick={toggleDrawer}><i className="fa fa-gear"></i> <span>{t("drawer.create")}</span></Link></li>
+            <li><Link to="/browse" onClick={toggleDrawer}><i className="fa fa-heart"></i> <span>{t("drawer.browse")}</span></Link></li>
+            <li><Link to="/about" onClick={toggleDrawer}><i className="fa fa-bookmark"></i> <span>{t("drawer.about")}</span></Link></li>
+            <li><Link to="/contact" onClick={toggleDrawer}><i className="fa fa-phone-square"></i> <span>{t("drawer.contact")}</span></Link></li>
             <li>
               {isLoggedIn ? (
                 <Link to="#" onClick={handleLogout}>
-                  <i className="fa fa-tasks"></i> <span>Logout</span>
+                  <i className="fa fa-tasks"></i> <span>{t("drawer.logout")}</span>
                 </Link>
               ) : (
                 <Link to="/login" onClick={toggleDrawer}>
-                  <i className="fa fa-tasks"></i> <span>Login</span>
+                  <i className="fa fa-tasks"></i> <span>{t("drawer.login")}</span>
                 </Link>
               )}
             </li>
@@ -88,25 +92,25 @@ const DrawerNav = () => {
 
         {/* Social Icons */}
         <div className="social">
-          <h2>Stay Connected</h2>
+          <h2>{t("drawer.social")}</h2>
           <ul>
             <li>
-              <a href="https://www.instagram.com/your-instagram-handle" target="_blank" rel="noreferrer">
+              <a href="https://www.instagram.com/lewisuniversity/?hl=en" target="_blank" rel="noreferrer">
                 <i className="fab fa-instagram fa-3x"></i>
               </a>
             </li>
             <li>
-              <a href="https://github.com/your-github-username" target="_blank" rel="noreferrer">
+              <a href="https://github.com/ChairForce-1-0/Syllabye-Capstone" target="_blank" rel="noreferrer">
                 <i className="fab fa-github fa-3x"></i>
               </a>
             </li>
             <li>
-              <a href="https://www.your-website.com" target="_blank" rel="noreferrer">
+              <a href="https://www.lewisu.edu/" target="_blank" rel="noreferrer">
                 <i className="fa fa-globe fa-3x"></i>
               </a>
             </li>
             <li>
-              <a href="mailto:your-email@example.com">
+              <a href="mailto:syllabyespt@gmail.com">
                 <i className="fa fa-envelope-square fa-3x"></i>
               </a>
             </li>

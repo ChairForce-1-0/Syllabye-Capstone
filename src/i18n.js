@@ -12,6 +12,21 @@ const resources = {
         scrollDownAlt: "Scroll Down",
       },
 
+      // DRAWERNAV
+      drawer: {
+        navigate: "Navigate",
+        hello: "Hello",
+        home: "Home",
+        dashboard: "Dashboard",
+        create: "Create",
+        browse: "Browse",
+        about: "About",
+        contact: "Contact",
+        login: "Login",
+        logout: "Logout",
+        social: "Stay Connected"
+      },
+
       // TECH STACK
       techStack: {
         title: "Tech Stack",
@@ -33,6 +48,61 @@ const resources = {
         },
       },
 
+      // BROWSEPDF
+      browsePdfs: {
+        title: "Browse our public syllabi below",
+        noPdfs: "No PDFs found.",
+      },
+
+      // CONTACT
+      contact: {
+        getInTouch: "Get in Touch",
+        description: "Have questions or feedback? Feel free to reach out to us using the forms on the right based on your use case. We're happy to assist you!",
+        emailTitle: "Need Help? Email Us!",
+        emailText: "Contact us at:",
+        professorFeedback: "Professor Feedback",
+        studentFeedback: "Student Feedback"
+      },
+
+      // CREATEINSTRUCTIONS
+      createInstructions: {
+        title: "Getting Started",
+        step1: "Click <1>Create Syllabus</1> to create your syllabus.",
+        step2: "Fill out each form section with your course details.",
+        step3: "Click <1>Next</1> to move through the steps of creating your syllabus.",
+        step4: "Use <1>Generate Syllabus</1> to preview it.",
+        step5: "Then <1>Upload</1> to the site (publicly available) for students to use or <1>Download</1> to PDF."
+      },
+
+      // PDFUPLOADER
+      pdfUploader: {
+        uploadButton: "Upload PDF",
+        modalTitle: "Upload and Preview PDF",
+        instruction: "Please upload your syllabus as a PDF only",
+        shareLabel: "Share this Syllabus Publicly on our Browse page:",
+        previewLabel: "Preview:",
+        closeButton: "Close",
+        confirmUploadButton: "Upload",
+        alertInvalidFile: "Please select a valid PDF file.",
+        alertNoFile: "No file selected!",
+        uploadSuccess:
+          "Your Syllabus has been uploaded and can be viewed here:",
+      },
+
+      // MYUPLOADS
+      myUploads: {
+        title: "Your uploads:",
+        noFiles: "No files found, use the upload button above to get started.",
+      },
+
+      // REQPROF
+      reqProf: {
+        loading: "Loading...",
+        accessDenied: "Access Denied",
+        errorMessage: "You must be a professor to create new syllabi. If you believe this is an error, please contact support.",
+        contactButton: "Contact Page"
+      },
+
       // SERVICES
       services: {
         title: "About our software",
@@ -46,6 +116,31 @@ const resources = {
         nodejsTitle: "Node.js",
         nodejsDesc:
           "We use Node.js for its fast, scalable server-side capabilities, allowing us to handle real-time data processing and ensure smooth, efficient performance for our application.",
+      },
+
+      // SYLLABUSFORM
+      syllabusForm: {
+        createNew: "Create New Syllabus",
+        continueUnfinished: "Continue Unfinished Syllabus",
+        modalCreate: "Create Syllabus",
+        modalContinue: "Continue Editing Syllabus",
+        close: "Close",
+        save: "Save Progress",
+        previous: "Previous",
+        next: "Next",
+        generate: "Generate Syllabus",
+        previewTitle: "Syllabus Preview",
+        download: "Download Syllabus",
+        upload: "Upload Syllabus",
+        createAnother: "Create Another Syllabus",
+        unfinishedTitle: "Unfinished Syllabi",
+        noSaved: "No saved syllabi.",
+        untitled: "Untitled",
+        savedOn: "Saved on:",
+        continueEditing: "Continue Editing",
+        delete: "Delete",
+        confirmDelete: "Click again to confirm",
+        preparingPdf: "Preparing PDF..."
       },
 
       // WHY USE
@@ -205,6 +300,21 @@ const resources = {
         scrollDownAlt: "Desplázate hacia abajo",
       },
 
+      // DRAWERNAV
+      drawer: {
+        navigate: "Navegar",
+        hello: "Hola",
+        home: "Inicio",
+        dashboard: "Panel",
+        create: "Crear",
+        browse: "Explorar",
+        about: "Acerca de",
+        contact: "Contacto",
+        login: "Iniciar Sesión",
+        logout: "Cerrar Sesión",
+        social: "Conéctate con nosotros"
+      },
+
       // TECH STACK
       techStack: {
         title: "Stack Tecnológico",
@@ -226,6 +336,64 @@ const resources = {
         },
       },
 
+      // BROWSEPDF
+      browsePdfs: {
+        title: "Explora nuestros syllabus públicos a continuación",
+        noPdfs: "No se encontraron archivos PDF.",
+      },
+
+      // CONTACT
+      contact: {
+        getInTouch: "Contáctanos",
+        description: "¿Tienes preguntas o comentarios? No dudes en comunicarte con nosotros usando los formularios a la derecha según tu caso. ¡Estamos felices de ayudarte!",
+        emailTitle: "¿Necesitas ayuda? ¡Envíanos un correo!",
+        emailText: "Contáctanos en:",
+        professorFeedback: "Comentarios de Profesores",
+        studentFeedback: "Comentarios de Estudiantes"
+      },
+
+      // CREATEINSTRUCTIONS
+      createInstructions: {
+        title: "Comenzando",
+        step1: "Haz clic en <1>Crear Syllabus</1> para crear tu syllabus.",
+        step2: "Completa cada sección del formulario con los detalles de tu curso.",
+        step3:
+          "Haz clic en <1>Siguiente</1> para avanzar a través de los pasos de creación de tu syllabus.",
+        step4: "Usa <1>Generar Syllabus</1> para previsualizarlo.",
+        step5:
+          "Luego <1>Sube</1> al sitio (disponible públicamente) para que los estudiantes lo usen o <1>Descárgalo</1> como PDF.",
+      },
+
+      // PDFUPLOADER
+      pdfUploader: {
+        uploadButton: "Subir PDF",
+        modalTitle: "Subir y previsualizar PDF",
+        instruction: "Por favor sube tu syllabus únicamente en formato PDF",
+        shareLabel:
+          "Compartir este syllabus públicamente en la página de exploración:",
+        previewLabel: "Previsualización:",
+        closeButton: "Cerrar",
+        confirmUploadButton: "Subir",
+        alertInvalidFile: "Por favor selecciona un archivo PDF válido.",
+        alertNoFile: "¡No se ha seleccionado ningún archivo!",
+        uploadSuccess: "Tu syllabus ha sido subido y puede verse aquí:",
+      },
+
+      // MYUPLOADS
+      myUploads: {
+        title: "Tus archivos subidos:",
+        noFiles:
+          "No se encontraron archivos. Usa el botón de subir arriba para comenzar.",
+      },
+
+      // REQPROF
+      reqProf: {
+        loading: "Cargando...",
+        accessDenied: "Acceso denegado",
+        errorMessage: "Debes ser profesor para crear nuevos syllabi. Si crees que esto es un error, por favor contacta al soporte.",
+        contactButton: "Página de Contacto"
+      },
+
       // SERVICES
       services: {
         title: "Acerca de nuestro software",
@@ -239,6 +407,31 @@ const resources = {
         nodejsTitle: "Node.js",
         nodejsDesc:
           "Usamos Node.js por sus capacidades rápidas y escalables del lado del servidor, permitiéndonos manejar el procesamiento de datos en tiempo real y asegurar un rendimiento fluido y eficiente para nuestra aplicación.",
+      },
+
+      // SYLLABUSFORM
+      syllabusForm: {
+        createNew: "Crear nuevo syllabus",
+        continueUnfinished: "Continuar syllabus sin terminar",
+        modalCreate: "Crear syllabus",
+        modalContinue: "Continuar editando syllabus",
+        close: "Cerrar",
+        save: "Guardar progreso",
+        previous: "Anterior",
+        next: "Siguiente",
+        generate: "Generar syllabus",
+        previewTitle: "Vista previa del syllabus",
+        download: "Descargar syllabus",
+        upload: "Subir syllabus",
+        createAnother: "Crear otro syllabus",
+        unfinishedTitle: "Syllabus sin terminar",
+        noSaved: "No hay syllabi guardados.",
+        untitled: "Sin título",
+        savedOn: "Guardado el:",
+        continueEditing: "Continuar editando",
+        delete: "Eliminar",
+        confirmDelete: "Haz clic otra vez para confirmar",
+        preparingPdf: "Preparando PDF..."
       },
 
       // WHY USE

@@ -1,93 +1,176 @@
-# Syllabye - Senior Capstone Project
+# 📘 Syllabye - Senior Capstone Project
 
-![Syllabye Logo](public/images/Syllabye-White-White.png) <!-- Add your logo here if available -->
+![Syllabye Logo](public/images/Syllabye-White-White.png)
 
-Welcome to **Syllabye**, the ultimate solution for professors and students to streamline, simplify, and succeed in syllabus management! This project is the culmination of our senior capstone journey, where we’ve combined innovation, technology, and a dash of creativity to revolutionize how syllabi are created, edited, and shared.
-
----
-
-## 🚀 **About the Project**
-
-**Syllabye** is a web-based application designed to help professors easily create, edit, and manage their course syllabi. With features like dynamic customization, student-friendly views, and seamless export options, Syllabye makes syllabus management a breeze. Whether you're a professor looking to save time or a student seeking clarity, Syllabye has you covered.
-
-### Key Features
-
-- **Dynamic Syllabus Editor**: Drag-and-drop interface for easy syllabus creation.
-- **Student-Friendly View**: Simplified, to-the-point version for students.
-- **Export Options**: Save syllabi as PDFs or Word documents.
-- **Collaboration Tools**: Real-time editing and feedback for professors and TAs.
-- **Accessibility**: Built with inclusivity in mind, ensuring all users can access and use the platform.
+**Syllabye** is an intuitive web application designed to simplify syllabus management for both professors and students. Developed by students at Lewis University, the platform provides a dynamic interface for creating, customizing, sharing, and managing syllabi—enhancing clarity, accessibility, and collaboration in the academic experience.
 
 ---
 
-## 👨‍💻 **Meet the Team**
+## 🚀 About the Project
 
-We’re a team of passionate developers and problem-solvers from Lewis University, dedicated to making education more accessible and efficient. Here’s who we are:
+Syllabye offers tools for both professors and students to interact with syllabi in a modern, web-friendly format. Built with usability in mind, it supports real-time collaboration, multi-language support, clean design principles, and responsive features for all users.
 
-| Team Member        | Role                          | Superpower                          |
-|--------------------|-------------------------------|-------------------------------------|
-| **Irving Sanchez**  | Project Manager               | Can debug code in his sleep.        |
-| **Nick Krzysiak**   | Scrum Master                  | Makes databases sing.               |
-| **Jaiden Leonard**  | Security Wizard               | Turns security into reality.        |
-| **Bryan Avalos**    | Frontend Magician             | Knows every framework ever created. |
+### ✨ Key Features
 
-Refer to the links below for more info.
-
-- [TEAM.md](./TEAM.md) - Team members, roles, and communication  
-- [PROCESS.md](./PROCESS.md) - Scrum process, events, and workflows  
+- 🔧 **Interactive Syllabus Builder** – Easy-to-use form system to create professional-looking syllabi.
+- 📥 **PDF Upload & Download** – Professors can upload their syllabi or export them for distribution.
+- 🌐 **Language Support** – Switch between English and Spanish (Central American, Mexico).
+- 🎯 **Clean, Intuitive Interface** – Designed with Bootstrap and TailwindCSS for current and future styling flexibility.
+- 🛡️ **Role-Based Access (Coming Soon)** – Enhanced user permissions and dashboards.
 
 ---
 
-## 🛠️ **Tech Stack**
+## 👨‍💻 Meet the Team
 
-Here’s what powers Syllabye:
+A team of senior Computer Science students from **Lewis University**:
 
-- **Frontend**: HTML, CSS, JavaScript, Bootstrap
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Version Control**: Git & GitHub
-- **Deployment**: Azure
+| Name             | Role                | Fun Fact                             |
+|------------------|---------------------|--------------------------------------|
+| Irving Sanchez   | Project Manager     | Can debug code in his sleep.         |
+| Nick Krzysiak    | Scrum Master        | Makes frontend logic sing.           |
+| Jaiden Leonard   | Security Specialist | Turns security into simplicity.      |
+| Bryan Avalos     | Frontend Developer  | Has mastered more frameworks than most. |
+
+---
+
+## 🛠️ Tech Stack
+
+### Core Technologies
+
+- **Frontend**: React.js, HTML5, CSS3, JavaScript
+- **Styling**: Bootstrap 5, TailwindCSS (transitioning)
+- **Backend**: Node.js + Express.js
+- **Version Control**: Git + GitHub
+- **Deployment**: Azure Static Web Apps
 - **Icons**: Font Awesome
-- **Other Tools**: Slick Carousel, jQuery
+- **Other Libraries**: Vite, jQuery (limited), Firebase for storage
 
 ---
 
-## 🚦 **Getting Started**
+## 📦 Installation & Setup
 
-Ready to dive into **Syllabye**? Follow these steps to get the project up and running on your local machine.
+To get started with **Syllabye** on your local machine:
 
-git clone <https://github.com/ChairForce-1-0/Syllabye-Capstone.git>
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/ChairForce-1-0/Syllabye-Capstone.git
 cd Syllabye-Capstone
+```
+
+### 2. Install Dependencies
+
+```bash
 npm install
+```
+
+### 3. Run the Development Server
+
+```bash
 npm run dev
+```
 
-### **Prerequisites**
+### 4. Access the App
 
-Before you begin, make sure you have the following installed:
+Open your browser and visit:
 
-- [Node.js](https://nodejs.org/) (v14 or higher)
-- [npm](https://www.npmjs.com/) (comes with Node.js)
+```plaintext
+http://localhost:5173
+```
 
-More to come, updates coming soon....
+---
 
-## 📂 **Project Structure**
+## ✅ Prerequisites
 
-Here’s a quick overview of the project structure:
-syllabye/
+Before running this app, ensure the following are installed:
 
-   ```bash
-syllabye-app/
-│── public/                 # Static assets (images, favicons)
-│   ├── images/             # Logos and background images
-│── src/                    # Main source code
-│   ├── assets/             # CSS and global styles
-│   ├── components/         # Reusable React components
-│   ├── pages/              # Page-specific components
-│   ├── App.jsx             # Main app component
-│   ├── main.jsx            # React entry point
-│── index.html              # Root HTML file
-│── package.json            # Project dependencies & scripts
-│── vite.config.js          # Vite configuration
-│── README.md               # Project documentation
+- **Node.js** (v16+ recommended): <https://nodejs.org/>
+- **npm**: Comes bundled with Node.js
 
+---
 
+## 📁 Project Structure
+
+```markdown
+📁 Syllabye-Capstone
+├── .gitignore
+├── COMMIT_EDITMSG
+├── config
+├── description
+├── eslint.config.js
+├── FETCH_HEAD
+├── HEAD
+├── index.html
+├── LICENSE
+├── ORIG_HEAD
+├── package-lock.json
+├── package.json
+├── packed-refs
+├── postcss.config.js
+├── PROCESS.md
+├── README.md
+├── REBASE_HEAD
+├── staticwebapp.config.json
+├── tailwind.config.js
+├── TEAM.md
+├── vite.config.js
+├── 📁 public
+│   ├── 📁 images
+│   └── 📁 pdfs
+├── 📁 src
+│   ├── App.css
+│   ├── App.jsx
+│   ├── Firebase.jsx
+│   ├── i18n.js
+│   ├── index.css
+│   ├── main.jsx
+│   ├── MULTI-LANGUAGE-SUPPORT.md
+│   ├── 📁 assets
+│   ├── 📁 components
+│   ├── 📁 images
+│   └── 📁 pages
+│       ├── About.jsx
+│       ├── Browse.jsx
+│       ├── Contact.jsx
+│       ├── Create.jsx
+│       ├── Dashboard.jsx
+│       ├── EditUpload.jsx
+│       ├── Home.jsx
+│       ├── Login.jsx
+│       ├── Signup.jsx
+│       └── TestTailwind.jsx
+```
+
+---
+
+## 🔧 Notes for Future Developers
+
+- A language toggle component is implemented across most pages.
+- Firebase handles PDF upload/download operations.
+- Styling will be incrementally transitioned to **TailwindCSS** – future developers are encouraged to continue this migration.
+- If setting up Azure Static Web Apps, ensure correct routing is configured in `staticwebapp.config.json`.
+
+---
+
+## 🙌 Acknowledgements
+
+Special thanks to Lewis University faculty and peers for their support throughout the capstone journey.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## ✨ Future Contributions
+
+We encourage future students or developers to:
+
+- Complete the TailwindCSS migration
+- Implement role-based dashboards
+- Expand PDF and instruction template support
+- Improve accessibility testing and keyboard navigation
+
+Let's continue making syllabus management smarter, faster, and easier.
