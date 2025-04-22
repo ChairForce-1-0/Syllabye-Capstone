@@ -27,7 +27,7 @@ const resources = {
         social: "Stay Connected"
       },
 
-      // TECH STACK
+      // TECH STACK devops
       techStack: {
         title: "Tech Stack",
         githubRepo: "GitHub Repo",
