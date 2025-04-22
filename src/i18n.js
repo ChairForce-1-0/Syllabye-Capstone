@@ -189,7 +189,7 @@ const resources = {
           yash: {
             name: "Yeswanth Sai Edhala",
             description:
-              "Yash is a senior pursing a major in computer science, who is passionate about creating innovative solutions and constantly learning new technologies. Specializing in web development, IT engineering, and software engineering.",
+              "Yash is a senior studying computer science. He enjoys exploring new technologies, and he has a passion for playing cricket and handball. A fun fact about him is that he serves as the President of the Lewis Cricket Club and has also played handball at the national level.",
           },
           joshua: {
             name: "Joshua Vachachira",
