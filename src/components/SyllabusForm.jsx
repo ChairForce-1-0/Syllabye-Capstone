@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Modal, Form, Container } from "react-bootstrap";
+import { Button, Modal, Form, Container, ProgressBar, Alert } from "react-bootstrap";
 import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import InstructorInfo from "./InstructorInfo";
 import CourseInfo from "./CourseInfo";
@@ -20,6 +20,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../Firebase";
 import "./AboutPage.css";
 import { useTranslation } from "react-i18next";
+
 
 function SyllabusForm() {
 
@@ -91,6 +92,11 @@ const [currentStep, setCurrentStep] = useState(1); // Track step in form
 const [formData, setFormData] = useState(initialFormData);
 const [stepErrors, setStepErrors] = useState(initialStepErrors);
 const [savedSyllabi, setSavedSyllabi] = useState([]);
+const totalSteps = 6;
+const modalProgress = (currentStep / totalSteps) * 100;
+const [saveSuccess, setSaveSuccess] = useState(false);
+const [saveError, setSaveError] = useState(false);
+const [saveTime, setSaveTime] = useState(null);
 
 // File naming convention
 const shortYear = formData.courseYear.slice(-2); 
@@ -116,12 +122,39 @@ const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 };
 
-const handleClose = () => setShowCreateModal(false);
+const handleClose = async () => {
+  await handleSaveOnClose(); // Saves the syllabus upon closing the modal
+  setShowCreateModal(false);
+  setSaveSuccess(false); // Dismiss save alert
+}; 
 
-// save unfinished syllabus
-const handleSaveProgress = () => {
-    saveUnfinishedSyllabus(formData, userId);
+// save unfinished syllabus and display time
+const handleSaveProgress = async () => {
+    try {
+      setSaveSuccess(false); 
+      setSaveError(false);
+
+      await saveUnfinishedSyllabus(formData, userId);
+      const currentTime = new Date().toLocaleString([], { hour: '2-digit', minute: '2-digit' });
+      setSaveTime(currentTime); 
+
+      setSaveSuccess(true);
+    }
+    catch (error) {
+      console.error('Save failed', error);
+      setSaveError(true);
+      setSaveSuccess(false);
+    }
 };
+
+// Save syllabus when closing modal
+const handleSaveOnClose = async () => {
+  try {
+    await saveUnfinishedSyllabus(formData, userId)
+  } catch (error) {
+    console.error('Save failed', error);
+  }
+}
 
 // Load the creation modal with filled in data form unfinished syllabi
 const handleContinueEditing = (syllabusData) => {
@@ -150,6 +183,7 @@ const prevStep = () => {
 // Shows the pdf preview
 const handleGenerateSyllabus = () => {
     setShowPDF(true);
+    setSaveSuccess(false); // Dismiss the save alert
 };
 
 const handleStepValidation = (step, errors) => {
@@ -218,7 +252,7 @@ const handleClick = (syllabus) => {
       {!showPDF ? (
         <>
           <div className="button-container gap-3 mb-4 mt-4">
-            <ReqProfCreate>
+            <ReqProfCreate> 
               <Button
                 variant="primary"
                 onClick={handleCreateNewSyllabus}
@@ -244,10 +278,42 @@ const handleClick = (syllabus) => {
           >
             <Modal.Header closeButton>
               <Modal.Title>
-                {isEditingUnfinishedSyllabus
-                  ? t("syllabusForm.modalContinue")
-                  : t("syllabusForm.modalCreate")}
+                <div className="d-flex justify-content-between align-items-center w-100">
+                  <div>
+                    {isEditingUnfinishedSyllabus
+                      ? t("syllabusForm.modalContinue")
+                      : t("syllabusForm.modalCreate")}
+                    {/* Progress bar for creation modal */}
+                    <div style={{ padding: '0.1rem' }}>
+                      <ProgressBar striped variant="success" now={modalProgress} label={`${Math.round(modalProgress)}%`} />
+                    </div>
+                  </div>
+
+                  {/* Alert for saving syllabus */}
+                  <div className="ms-3">
+                    {saveSuccess && (
+                      <Alert
+                        variant="success"
+                        onClose={() => setSaveSuccess(false)}
+                        className = "save-alert" 
+                      >
+                        {`Progress last saved: ${saveTime ? saveTime : 'loading...'}`}
+                      </Alert>
+                    )}
+
+                    {saveError && (
+                      <Alert
+                        variant="danger"
+                        onClose={() => setSaveError(false)}
+                        className = "save-alert"
+                      >
+                        Error saving progress.
+                      </Alert>
+                    )}
+                  </div>
+                </div>
               </Modal.Title>
+
             </Modal.Header>
             <Modal.Body>
               <Form>
@@ -310,6 +376,7 @@ const handleClick = (syllabus) => {
               >
                 {t("syllabusForm.save")}
               </Button>
+
               <div>
                 <Button
                   variant="secondary"

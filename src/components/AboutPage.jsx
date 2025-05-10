@@ -15,7 +15,7 @@ const currentTeamMembers = [
   // The Dev Den
   { imgSrc: "/images/dev-den.png", name: "devden", link: "https://github.com/ChairForce-1-0/Syllabye-Capstone" },
   { imgSrc: "/images/ethan.png", name: "ethan", link: "#" },
-  { imgSrc: "/images/anon.png", name: "yash", link: "#" },
+  { imgSrc: "/images/yash.jpg", name: "yash", link: "#" },
   { imgSrc: "/images/Joshua-V.png", name: "joshua", link: "#" },
   
   // Previous Members
