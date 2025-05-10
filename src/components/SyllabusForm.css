@@ -128,6 +128,17 @@
   .upload-button:hover {
     background-color: #aa073b !important;
   }
+
+  .modal .save-alert {
+    font-size: 0.8rem !important;
+    font-weight: normal !important;
+    padding: 0.25rem 0.5rem !important;
+    margin: 0 !important;
+    width: 200px !important; 
+    flex-shrink: 0 !important;
+    text-transform: none !important;
+  }
+
   
 
 
