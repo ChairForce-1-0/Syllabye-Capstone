@@ -46,32 +46,37 @@
     flex-wrap: wrap;
   }
   
-  .btn {
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-  }
+  
+.btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px; /* Rounded button corners */
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
   
   .btn:hover {
     transform: scale(1.05);
   }
   
+  
+  
+
   .btn-delete {
-    background-color: #dc3545;
-    color: white;
+    background-color: #dc3545 !important;
+    color: white !important;
+    
   }
   
   .btn-public {
-    background-color: #28a745;
-    color: white;
+    background-color: #28a745 !important;
+    color: white !important;
   }
   
   .btn-edit {
-    background-color: #6f42c1;
-    color: white;
+    background-color: #6f42c1 !important;
+    color: white !important;
   }
   
