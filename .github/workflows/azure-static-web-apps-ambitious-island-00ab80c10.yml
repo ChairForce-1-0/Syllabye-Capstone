@@ -3,11 +3,11 @@ name: Azure Static Web Apps CI/CD
 on:
   push:
     branches:
-      - Production
+      - main
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - Production
+      - main
 
 jobs:
   build_and_deploy_job:
@@ -15,35 +15,35 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
 
-      - name: Set up Node.js 20
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20 # Forces GitHub Actions to use Node.js 20+
+          node-version: 18 # Use the correct Node.js version for Vite
 
       - name: Install Dependencies
         run: npm install
 
-      - name: Build the App
+      - name: Build Vite App
         run: npm run build
 
-      - name: Copy Azure Static Web Apps config to dist
-        run: cp staticwebapp.config.json dist/
-
-      - name: Build And Deploy
+      - name: Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GENTLE_MOSS_0FD314310 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for GitHub integrations (i.e. PR comments)
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_ISLAND_00AB80C10 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
           action: "upload"
-          app_location: "/" # App source code path
-          api_location: ""  # API source code path - optional
-          output_location: "dist" # ✅ Vite uses "dist"
+          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
+          app_location: "/" # Path to your source code
+          api_location: "" # Leave empty if not using an API
+          output_location: "dist" # ⚠️ Change from "build" to "dist" for Vite!
+          ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -54,5 +54,5 @@ jobs:
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GENTLE_MOSS_0FD314310 }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_AMBITIOUS_ISLAND_00AB80C10 }}
           action: "close"
