@@ -1,0 +1,23 @@
+/* UserNameDisplay.css */
+.centered-text {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    animation: fadeOut 3s ease-in-out forwards;
+}
+
+/* Keyframes for fade-out */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
