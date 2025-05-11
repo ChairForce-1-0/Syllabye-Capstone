@@ -20,7 +20,6 @@ const App = () => {
     <>
       <Navbar /> {/* Navbar is always visible */}
       <DrawerNav /> {/* DrawerNav is always visible */}
-
       <div className="main-content">
         <Routes> 
           <Route path="/" element={<Home />} />

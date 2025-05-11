@@ -13,9 +13,10 @@ import {
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBrJvJyPIZW-0LiAe7jGU9GCCtJ4T9RDFI",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "syllabye-d56d5.firebaseapp.com",
   projectId: "syllabye-d56d5",
   storageBucket: "syllabye-d56d5.firebasestorage.app",
