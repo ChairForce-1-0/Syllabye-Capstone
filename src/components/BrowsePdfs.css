@@ -1,73 +1,106 @@
 .pdf-container {
   text-align: center;
-  padding: 20px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-/* Ensure the grid is centered within its container */
-.pdf-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 30px;
-  justify-content: center; /* Center grid items horizontally */
-  align-items: center; /* Center grid items vertically */
-  width: 100%;
-  max-width: 900px; /* Ensures even spacing and prevents extra stretching */
-  margin: 0 auto; /* Ensures it stays centered */
-  place-items: center; /* Extra centering assistance */
+.title {
+  font-size: 3.5rem;
+  margin-bottom: 3rem;
+  font-weight: 600;
+  color: #ffffff;
 }
 
-/* Ensure PDF blocks remain consistently sized */
+/* Grid Layout */
+.pdf-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 40px;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* Modern Card Design */
 .pdf-block {
   background-color: #800020;
   color: white;
-  padding: 20px;
-  width: 220px; /* Adjust size to be even */
-  height: 300px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 30px 20px;
+  width: 100%;
+  height: 320px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.2s;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 /* Hover effect */
 .pdf-block:hover {
   background-color: #a83250;
-  transform: scale(1.05);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
-/* Make sure the grid aligns properly on different screen sizes */
+/* Image inside card (optional if you use logos) */
+.pdf-block img {
+  max-width: 120px;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 1024px) {
   .pdf-list {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    max-width: 700px; /* Adjust grid width for better centering */
+    max-width: 800px;
   }
 }
 
 @media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
   .pdf-list {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     max-width: 600px;
+    gap: 30px;
   }
 }
 
 @media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
   .pdf-list {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    max-width: 400px;
+    max-width: 90%;
+  }
+
+  .pdf-block {
+    padding: 20px 15px;
+    height: 280px;
   }
 }
 
-.title {
-  font-size: 4rem;
-  margin-top: 5rem;
+/* BrowsePdfs.css */
+
+.pdf-title {
+  font-family: 'Roboto', monospace; /* or try 'Roboto', 'Inter', etc. */
+  font-size: 0.95rem;
+  font-weight: bold;
+  margin-top: 10px;
+  word-break: break-word; /* helpful for long filenames */
+  color: #f8f8f8;
 }

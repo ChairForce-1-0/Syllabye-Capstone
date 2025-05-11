@@ -6,7 +6,7 @@ const Dashboard = () => {
   return (
     
     <div> 
-        <UserNameDisplay />,
+        <UserNameDisplay />
         <PdfUploader />
         <MyUploads />
       

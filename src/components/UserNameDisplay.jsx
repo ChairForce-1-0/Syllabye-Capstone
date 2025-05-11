@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { auth, db } from "../Firebase"; // Ensure correct Firebase config
+import { auth, db } from "../Firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import "./UserNameDisplay.css"; // Import the CSS
 
 const capitalize = (str) => {
   return str ? str.charAt(0).toUpperCase() + str.slice(1).toLowerCase() : "";
@@ -20,7 +21,7 @@ const UserNameDisplay = () => {
 
           if (userSnap.exists()) {
             const firstName = userSnap.data().firstName || "Guest";
-            setFirstName(capitalize(firstName)); // Ensure first letter is capitalized
+            setFirstName(capitalize(firstName));
           } else {
             setFirstName("Guest");
           }
@@ -37,9 +38,9 @@ const UserNameDisplay = () => {
     return () => unsubscribe();
   }, []);
 
-  if (loading) return <p>Loading user info...</p>;
+  if (loading) return <div className="centered-text">Loading user info...</div>;
 
-  return <p>Welcome, {firstName}!</p>;
+  return <div className="centered-text">Welcome, {firstName}!</div>;
 };
 
 export default UserNameDisplay;
