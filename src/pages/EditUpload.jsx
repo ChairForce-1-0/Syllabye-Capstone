@@ -1,3 +1,14 @@
+/*---+---+---+--Start of EditUpload.jsx Block---+---+---+--*/
+
+/**
+ * EditUpload.jsx - Syllabus Editing Page Component
+ * This component:
+ * - Handles PDF preview and management
+ * - Supports file deletion and public upload
+ * - Manages syllabus metadata editing
+ * - Provides modal-based form editing
+ */
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
@@ -14,19 +25,31 @@ import { db } from "../Firebase";
 import EditSyllabusForm from "../components/EditSyllabusForm";
 import "../components/EditUpload.css";
 
+/*---+---+---+--Start of Main Component Block---+---+---+--*/
+/**
+ * EditUpload - Syllabus Management Component
+ * @returns {JSX.Element} - Complete edit interface with preview and controls
+ */
 function EditUpload() {
   const location = useLocation();
   const navigate = useNavigate();
   const { fileName } = location.state || {};
 
+  // State management
   const [pdfPreviewUrl, setPdfPreviewUrl] = useState(null);
   const [syllabusData, setSyllabusData] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
+  // Firebase authentication
   const auth = getAuth();
   const user = auth.currentUser;
   const userId = user?.uid;
 
+  /*---+---+---+--Start of Effects Block---+---+---+--*/
+  /**
+   * useEffect - PDF Preview Initialization
+   * Fetches PDF URL for preview when component mounts
+   */
   useEffect(() => {
     const fetchPdfUrl = async () => {
       if (userId && fileName) {
@@ -42,7 +65,13 @@ function EditUpload() {
 
     fetchPdfUrl();
   }, [userId, fileName]);
+  /*---+---+---+--End of Effects Block---+---+---+--*/
 
+  /*---+---+---+--Start of Handler Functions Block---+---+---+--*/
+  /**
+   * handleDelete - File Deletion Handler
+   * Removes the PDF file from Firebase Storage
+   */
   const handleDelete = async () => {
     if (!userId || !fileName) return;
 
@@ -57,6 +86,10 @@ function EditUpload() {
     }
   };
 
+  /**
+   * handlePublicUpload - File Publishing Handler
+   * Copies the file from private to public storage
+   */
   const handlePublicUpload = async () => {
     const auth = getAuth();
     const waitForAuth = () =>
@@ -85,6 +118,10 @@ function EditUpload() {
     }
   };
 
+  /**
+   * handleEdit - Metadata Editing Handler
+   * Fetches syllabus data and opens edit modal
+   */
   const handleEdit = async () => {
     if (!userId || !fileName) {
       alert("User not authenticated or file name missing.");
@@ -110,7 +147,9 @@ function EditUpload() {
       alert("Failed to load syllabus details.");
     }
   };
+  /*---+---+---+--End of Handler Functions Block---+---+---+--*/
 
+  /*---+---+---+--Start of Render Block---+---+---+--*/
   return (
     <div className="edit-container">
       <h1 className="edit-title">Edit Upload</h1>
@@ -121,11 +160,14 @@ function EditUpload() {
           </p>
           {pdfPreviewUrl ? (
             <div className="preview-card">
+              {/* PDF Preview */}
               <iframe
                 src={pdfPreviewUrl}
                 className="preview-frame"
                 title="PDF Preview"
               ></iframe>
+              
+              {/* Action Buttons */}
               <div className="button-group">
                 <button onClick={handleDelete} className="btn btn-delete">
                   Delete File
@@ -145,6 +187,8 @@ function EditUpload() {
       ) : (
         <p>No file name provided.</p>
       )}
+      
+      {/* Edit Modal */}
       {showModal && syllabusData && (
         <EditSyllabusForm
           showModal={showModal}
@@ -154,6 +198,9 @@ function EditUpload() {
       )}
     </div>
   );
+  /*---+---+---+--End of Render Block---+---+---+--*/
 }
+/*---+---+---+--End of Main Component Block---+---+---+--*/
 
 export default EditUpload;
+/*---+---+---+--End of EditUpload.jsx Block---+---+---+--*/

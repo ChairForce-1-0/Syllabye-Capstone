@@ -1,16 +1,27 @@
+/*---+---+---+--Start of ContactPage.jsx Block---+---+---+--*/
+
+/**
+ * ContactPage.jsx - Contact Information Component
+ * Displays contact information and feedback forms
+ * Features:
+ * - Professor feedback form
+ * - Student feedback form
+ * - Email contact information
+ * - Multilingual support
+ */
+
 import React from "react";
 import "./ContactPage.css";
 import { useTranslation } from "react-i18next";
-import "./AboutPage.css"; // for language toggle styling
+import "./AboutPage.css"; // Shared language toggle styles
 
 const ContactPage = () => {
   const { t, i18n } = useTranslation();
 
   return (
     <div className="contact-page">
-
       <div className="contact-container">
-        {/* Left Side: Text Content */}
+        {/*---+---+---+--Start of Contact Info Block---+---+---+--*/}
         <div className="contact-text-container">
           <h2 className="contact-title">{t("contact.getInTouch")}</h2>
           <p className="contact-description">
@@ -29,10 +40,11 @@ const ContactPage = () => {
             alt="Syllabye Logo"
           />
         </div>
+        {/*---+---+---+--End of Contact Info Block---+---+---+--*/}
 
-        {/* Right Side: Forms */}
+        {/*---+---+---+--Start of Feedback Forms Block---+---+---+--*/}
         <div className="contact-forms-container">
-          {/* First Google Form */}
+          {/* Professor Feedback Form */}
           <div className="contact-form">
             <h2 className="contact-formbox">{t("contact.professorFeedback")}</h2>
             <iframe
@@ -46,7 +58,7 @@ const ContactPage = () => {
             </iframe>
           </div>
 
-          {/* Second Google Form */}
+          {/* Student Feedback Form */}
           <div className="contact-form">
             <h2 className="contact-formbox">{t("contact.studentFeedback")}</h2>
             <iframe
@@ -60,9 +72,12 @@ const ContactPage = () => {
             </iframe>
           </div>
         </div>
+        {/*---+---+---+--End of Feedback Forms Block---+---+---+--*/}
       </div>
     </div>
   );
 };
 
 export default ContactPage;
+
+/*---+---+---+--End of ContactPage.jsx Block---+---+---+--*/

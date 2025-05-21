@@ -1,35 +1,64 @@
+/*---+---+---+--Start of TeamCarousel.jsx Block---+---+---+--*/
+
+/**
+ * TeamCarousel.jsx - Animated Team Member Carousel Component
+ * This component:
+ * - Creates an infinite horizontal scrolling carousel of team members
+ * - Uses GSAP for smooth animations and performance
+ * - Supports manual navigation with arrow buttons
+ * - Pauses animation on hover for better UX
+ * - Handles responsive resizing
+ */
+
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import PropTypes from "prop-types";
 
+/*---+---+---+--Start of Main Component Block---+---+---+--*/
+/**
+ * TeamCarousel - Infinite Scrolling Carousel Component
+ * @param {Array} teamMembers - Array of team member objects with name, role, image, and link
+ * @returns {JSX.Element} - Animated carousel with navigation controls
+ */
 const TeamCarousel = ({ teamMembers }) => {
+  // Refs for DOM elements and animations
   const marqueeRef = useRef(null);
   const animation = useRef(null);
   const clones = useRef([]);
 
+  /*---+---+---+--Start of Animation Setup Block---+---+---+--*/
+  /**
+   * useEffect - Animation Initialization and Management
+   * Handles:
+   * - Setting up the infinite scrolling animation
+   * - Cloning items for seamless looping
+   * - Adding hover pause/resume functionality
+   * - Handling window resize events
+   */
   useEffect(() => {
     const marquee = marqueeRef.current;
     if (!marquee) return;
 
     let ctx = gsap.context(() => {
-      // Clear clones
+      // Clear existing clones
       clones.current.forEach((clone) => clone.remove());
       clones.current = [];
 
-      // Original items
+      // Get original items
       const items = gsap.utils.toArray(".marquee-item", marquee);
       if (!items.length) return;
 
-      // Clone items once
+      // Clone items for seamless looping
       items.forEach((item) => {
         const clone = item.cloneNode(true);
         marquee.appendChild(clone);
         clones.current.push(clone);
       });
 
+      // Calculate total width of all items
       const totalWidth = items.reduce((acc, item) => acc + item.offsetWidth, 0);
 
-      // Animate the marquee's x value infinitely
+      // Create infinite scrolling animation
       animation.current = gsap.to(marquee, {
         x: `-=${totalWidth * 2}`,
         duration: 60,
@@ -43,10 +72,12 @@ const TeamCarousel = ({ teamMembers }) => {
         },
       });
 
+      // Pause/resume on hover
       marquee.addEventListener("mouseenter", () => animation.current.pause());
       marquee.addEventListener("mouseleave", () => animation.current.resume());
     }, marquee);
 
+    // Handle window resize
     const onResize = () => {
       ctx.revert();
       ctx.init();
@@ -58,7 +89,15 @@ const TeamCarousel = ({ teamMembers }) => {
       window.removeEventListener("resize", onResize);
     };
   }, [teamMembers]);
+  /*---+---+---+--End of Animation Setup Block---+---+---+--*/
 
+
+  /*---+---+---+--Start of Navigation Block---+---+---+--*/
+  /**
+   * navigate - Manual Carousel Navigation
+   * @param {string} direction - 'next' or 'prev' for navigation direction
+   * Handles smooth snapping to next/previous team member
+   */
   const navigate = (direction) => {
     if (!animation.current) return;
 
@@ -76,10 +115,14 @@ const TeamCarousel = ({ teamMembers }) => {
       ease: "power2.inOut",
     });
   };
+  /*---+---+---+--End of Navigation Block---+---+---+--*/
 
+
+  /*---+---+---+--Start of Render Block---+---+---+--*/
   return (
     <div className="marquee-container">
       <div className="marquee-wrapper">
+        {/* Marquee Container with Team Members */}
         <div className="marquee" ref={marqueeRef}>
           {teamMembers.map((member, index) => (
             <div key={index} className="marquee-item">
@@ -90,6 +133,7 @@ const TeamCarousel = ({ teamMembers }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  {/* Team Member Image */}
                   <figure className="member-img-wrapper">
                     <img
                       className="member-img"
@@ -98,6 +142,8 @@ const TeamCarousel = ({ teamMembers }) => {
                       loading="lazy"
                     />
                   </figure>
+
+                  {/* Team Member Details */}
                   <figcaption className="member-details">
                     <h3 className="member-title">{member.name}</h3>
                     <p className="member-subtitle">{member.role}</p>
@@ -130,8 +176,16 @@ const TeamCarousel = ({ teamMembers }) => {
       </button>
     </div>
   );
+  /*---+---+---+--End of Render Block---+---+---+--*/
 };
+/*---+---+---+--End of Main Component Block---+---+---+--*/
 
+
+/*---+---+---+--Start of PropTypes Block---+---+---+--*/
+/**
+ * PropTypes - Component Property Validation
+ * Defines required props and their types
+ */
 TeamCarousel.propTypes = {
   teamMembers: PropTypes.arrayOf(
     PropTypes.shape({
@@ -142,5 +196,7 @@ TeamCarousel.propTypes = {
     })
   ).isRequired,
 };
+/*---+---+---+--End of PropTypes Block---+---+---+--*/
 
 export default TeamCarousel;
+/*---+---+---+--End of TeamCarousel.jsx Block---+---+---+--*/

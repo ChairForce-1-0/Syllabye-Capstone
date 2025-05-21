@@ -1,12 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { Table, Button, Form } from 'react-bootstrap';
+/*---+---+---+--Start of CourseSchedule.jsx Block---+---+---+--*/
 
+/**
+ * CourseSchedule.jsx - The Course Schedule Management Component
+ * This component handles:
+ * - Dynamic week-by-week course schedule creation
+ * - Form validation for schedule descriptions
+ * - Add/remove functionality for schedule rows
+ * - Integration with parent syllabus form
+ */
+
+/*---+---+---+--Start of Imports Block---+---+---+--*/
+import React, { useState, useEffect } from 'react';       // Core React functionality
+import { Table, Button, Form } from 'react-bootstrap';   // UI components
+/*---+---+---+--End of Imports Block---+---+---+--*/
+
+
+/*---+---+---+--Start of Component Block---+---+---+--*/
 function CourseSchedule({ formData, handleChange, onValidation }) {
+    /*---+---+---+--Start of State Management Block---+---+---+--*/
     const [errors, setErrors] = useState({
-        scheduleChanges: '',
-        scheduleDesc: ''
+        scheduleChanges: '',    // Tracks schedule changes validation
+        scheduleDesc: ''        // Tracks schedule description validation
     });
 
+    const [schedule, setSchedule] = useState(
+        formData.schedule || Array(8).fill(null).map(() => ({ 
+            week: '',           // Week number/identifier
+            topics: '',         // Weekly topics
+            assignments: ''     // Weekly assignments
+        }))
+    );
+    /*---+---+---+--End of State Management Block---+---+---+--*/
+
+
+    /*---+---+---+--Start of Validation Block---+---+---+--*/
     useEffect(() => {
         const validationRules = [
             { name: 'scheduleChanges', label: 'Schedule Changes', value: formData.scheduleChanges },
@@ -25,16 +52,26 @@ function CourseSchedule({ formData, handleChange, onValidation }) {
         setErrors(newErrors);
         onValidation(newErrors); // Notify SyllabusForm with errors for this step
     }, [formData, onValidation]);
+    /*---+---+---+--End of Validation Block---+---+---+--*/
 
+
+    /*---+---+---+--Start of Form Configuration Block---+---+---+--*/
     const formFields = [
-        { label: 'Schedule Description', name: 'scheduleDesc', placeholder: 'Enter a description for the course schedule' },
-        { label: 'Schedule Changes', name: 'scheduleChanges', placeholder: 'Enter information about potential schedule changes' },
+        { 
+            label: 'Schedule Description', 
+            name: 'scheduleDesc', 
+            placeholder: 'Enter a description for the course schedule' 
+        },
+        { 
+            label: 'Schedule Changes', 
+            name: 'scheduleChanges', 
+            placeholder: 'Enter information about potential schedule changes' 
+        },
     ];
+    /*---+---+---+--End of Form Configuration Block---+---+---+--*/
 
-    const [schedule, setSchedule] = useState(
-        formData.schedule || Array(8).fill(null).map(() => ({ week: '', topics: '', assignments: '' }))
-    );
 
+    /*---+---+---+--Start of Schedule Management Block---+---+---+--*/
     const handleAddRow = () => {
         setSchedule([
             ...schedule,
@@ -50,15 +87,18 @@ function CourseSchedule({ formData, handleChange, onValidation }) {
     const handleInputChange = (e, index) => {
         const { name, value } = e.target;
         const updatedSchedule = [...schedule]; // Clone the schedule
-        updatedSchedule[index] = { ...updatedSchedule[index], [name]: value }; // Update the specific field in the specific row
-        setSchedule(updatedSchedule); // Update the state with the new schedule
+        updatedSchedule[index] = { ...updatedSchedule[index], [name]: value }; // Update specific field
+        setSchedule(updatedSchedule); // Update state
     };
 
-    // Update parent formData state when schedule changes
+    // Update parent formData when schedule changes
     useEffect(() => {
         handleChange({ target: { name: 'schedule', value: schedule } });
     }, [schedule, handleChange]);
+    /*---+---+---+--End of Schedule Management Block---+---+---+--*/
 
+
+    /*---+---+---+--Start of Render Block---+---+---+--*/
     return (
         <div className="section">
             <h4>Course Schedule</h4>
@@ -81,7 +121,7 @@ function CourseSchedule({ formData, handleChange, onValidation }) {
             ))}
 
             <h4>Week by Week Schedule</h4>
-            {/* Table for Course Schedule */}
+            {/*---+---+---+--Start of Schedule Table Block---+---+---+--*/}
             <Table bordered responsive>
                 <thead>
                     <tr>
@@ -122,7 +162,7 @@ function CourseSchedule({ formData, handleChange, onValidation }) {
                                 <Button
                                     variant="danger"
                                     onClick={() => handleRemoveRow(index)}
-                                    disabled={schedule.length === 1} // Disable Remove button when there's only 1 row
+                                    disabled={schedule.length === 1} // Prevent removing last row
                                 >
                                     Remove
                                 </Button>
@@ -131,12 +171,17 @@ function CourseSchedule({ formData, handleChange, onValidation }) {
                     ))}
                 </tbody>
             </Table>
+            {/*---+---+---+--End of Schedule Table Block---+---+---+--*/}
+
             <Button variant="success" onClick={handleAddRow}>
                 Add Row
             </Button>
-
         </div>
     );
+    /*---+---+---+--End of Render Block---+---+---+--*/
 }
+/*---+---+---+--End of Component Block---+---+---+--*/
 
-export default CourseSchedule;
+export default CourseSchedule;  // Makes component available to parent forms
+
+/*---+---+---+--End of CourseSchedule.jsx Block---+---+---+--*/

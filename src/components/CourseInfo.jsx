@@ -1,7 +1,21 @@
+/*---+---+---+--Start of CourseInfo.jsx Block---+---+---+--*/
+
+/**
+ * CourseInfo.jsx - Course Information Form Component
+ * Handles input and validation for all course-related information
+ * Features:
+ * - Form fields for course details
+ * - Real-time validation
+ * - Error messaging
+ * - Dynamic field rendering
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 
 function CourseInfo({ formData, handleChange, onValidation }) {
+    /*---+---+---+--Start of State & Validation Block---+---+---+--*/
+    // Initialize error state for all form fields
     const [errors, setErrors] = useState({
         courseName: '',
         courseSectionNumber: '',
@@ -20,12 +34,19 @@ function CourseInfo({ formData, handleChange, onValidation }) {
         uMission: '',
     });
 
-    // Regex for courseSectionNumber (Ex: CPSC-20000-02)
-    const courseSectionRegex = /^[A-Z]{4}-\d{5}-\d{2}$/;
-    // Ensure user enters this for naming convention
-    const validTerms = ['Spring', 'Fall', 'Summer'];
-    // Regex for courseYear (ensures it is a year for naming convention)
-    const courseYearRegex = /^\d{4}$/;
+    // Validation patterns
+    const courseSectionRegex = /^[A-Z]{4}-\d{5}-\d{2}$/; // Format: CPSC-20000-02
+    const validTerms = ['Spring', 'Fall', 'Summer']; // Allowed semester terms
+    const courseYearRegex = /^\d{4}$/; // 4-digit year format
+    /*---+---+---+--End of State & Validation Block---+---+---+--*/
+
+
+    /*---+---+---+--Start of Validation Effect Block---+---+---+--*/
+    /**
+     * Validates form data whenever it changes
+     * Checks for required fields and proper formatting
+     * Updates error state and notifies parent component
+     */
 
     useEffect(() => {
         const validationRules = [
@@ -65,10 +86,16 @@ function CourseInfo({ formData, handleChange, onValidation }) {
         }, {});
 
         setErrors(newErrors);
-        onValidation(newErrors); // Notify SyllabusForm with errors for this step
+        onValidation(newErrors); // Notify parent component of validation status
     }, [formData, onValidation]);
+    /*---+---+---+--End of Validation Effect Block---+---+---+--*/
 
-    // Sorry for this being sloppy
+
+    /*---+---+---+--Start of Form Fields Configuration Block---+---+---+--*/
+    /**
+     * formFields - Defines all form fields and their properties
+     * Centralized configuration for dynamic form rendering
+     */
     const formFields = [
         { label: 'Course Name', name: 'courseName', placeholder: 'Enter the name of the course' },
         { label: 'Course Abbreviation, Number, and Section', name: 'courseSectionNumber', placeholder: 'Format Ex: CPSC-20000-002' },
@@ -86,7 +113,9 @@ function CourseInfo({ formData, handleChange, onValidation }) {
         { label: 'Modality of Instruction', name: 'modalityInstruction', placeholder: 'Enter the modality of instruction for the course' },
         { label: 'University Mission', name: 'uMission', placeholder: 'Enter how this course connects to the university mission', isTextArea: true },
     ];
+    /*---+---+---+--End of Form Fields Configuration Block---+---+---+--*/
 
+    /*---+---+---+--Start of Render Block---+---+---+--*/
     return (
         <div className="section">
             <h4>Course Information</h4>
@@ -110,6 +139,9 @@ function CourseInfo({ formData, handleChange, onValidation }) {
             ))}
         </div>
     );
+    /*---+---+---+--End of Render Block---+---+---+--*/
 }
 
 export default CourseInfo;
+
+/*---+---+---+--End of CourseInfo.jsx Block---+---+---+--*/

@@ -1,11 +1,33 @@
+/*---+---+---+--Start of CoursePolicyCont.jsx Block---+---+---+--*/
+
+/**
+ * CoursePolicyCont.jsx - Course Policies Continued Component
+ * Handles the grade breakdown section of course policies
+ * Features:
+ * - Interactive grade breakdown table
+ * - Dynamic row management
+ * - Automatic total calculations
+ * - Real-time updates to parent form
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Form, Table, Button } from 'react-bootstrap';
 
 function CoursePolicyCont({ formData, handleChange, onValidation }) {
+    /*---+---+---+--Start of State Initialization Block---+---+---+--*/
+    // Initialize grade breakdown with empty row if no existing data
     const [gradeBreakdown, setGradeBreakdown] = useState(formData.gradeBreakdown || [
         { assignment: '', points: '', number: '', totalPoints: '', percent: '' },
     ]);
+    /*---+---+---+--End of State Initialization Block---+---+---+--*/
 
+
+    /*---+---+---+--Start of Table Handlers Block---+---+---+--*/
+    /**
+     * Handles changes to grade breakdown table cells
+     * @param {Object} e - Change event
+     * @param {number} index - Row index being modified
+     */
     const handleGradeBreakdownChange = (e, index) => {
         const { name, value } = e.target;
         const updatedGradeBreakdown = [...gradeBreakdown];
@@ -13,6 +35,7 @@ function CoursePolicyCont({ formData, handleChange, onValidation }) {
         setGradeBreakdown(updatedGradeBreakdown);
     };
 
+    // Adds a new empty row to the grade breakdown table
     const handleAddRow = () => {
         setGradeBreakdown([
             ...gradeBreakdown,
@@ -20,12 +43,19 @@ function CoursePolicyCont({ formData, handleChange, onValidation }) {
         ]);
     };
 
+    // Removes a row from the grade breakdown table
     const handleRemoveRow = (index) => {
         const updatedGradeBreakdown = gradeBreakdown.filter((_, i) => i !== index);
         setGradeBreakdown(updatedGradeBreakdown);
     };
+    /*---+---+---+--End of Table Handlers Block---+---+---+--*/
 
-    // Calculate totals for #, totalPoints, and percent
+
+    /*---+---+---+--Start of Calculation Block---+---+---+--*/
+    /**
+     * Calculates totals for number, points, and percentage columns
+     * @returns {Object} Totals for each calculated column
+     */
     const calculateTotals = () => {
         let totalNumber = 0;
         let totalPoints = 0;
@@ -45,11 +75,18 @@ function CoursePolicyCont({ formData, handleChange, onValidation }) {
     };
 
     const totals = calculateTotals();
+    /*---+---+---+--End of Calculation Block---+---+---+--*/
 
+
+    /*---+---+---+--Start of Parent Update Block---+---+---+--*/
+    // Updates parent form when grade breakdown changes
     React.useEffect(() => {
         handleChange({ target: { name: 'gradeBreakdown', value: gradeBreakdown } });
     }, [gradeBreakdown, handleChange]);
+    /*---+---+---+--End of Parent Update Block---+---+---+--*/
 
+
+    /*---+---+---+--Start of Render Block---+---+---+--*/
     return (
         <div className="section">
             <h4>Grading/Course Policies Continued</h4>
@@ -67,6 +104,7 @@ function CoursePolicyCont({ formData, handleChange, onValidation }) {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* Dynamic rows for grade breakdown */}
                     {gradeBreakdown.map((row, index) => (
                         <tr key={index}>
                             <td>
@@ -113,13 +151,14 @@ function CoursePolicyCont({ formData, handleChange, onValidation }) {
                                 <Button
                                     variant="danger"
                                     onClick={() => handleRemoveRow(index)}
-                                    disabled={gradeBreakdown.length === 1} // Disable Remove button when there's only 1 row
+                                    disabled={gradeBreakdown.length === 1}
                                 >
                                     Remove
                                 </Button>
                             </td>
                         </tr>
                     ))}
+                    
                     {/* Totals row */}
                     <tr>
                         <td><strong>Total</strong></td>
@@ -137,8 +176,9 @@ function CoursePolicyCont({ formData, handleChange, onValidation }) {
             </Button>
         </div>
     );
+    /*---+---+---+--End of Render Block---+---+---+--*/
 }
 
 export default CoursePolicyCont;
 
-
+/*---+---+---+--End of CoursePolicyCont.jsx Block---+---+---+--*/

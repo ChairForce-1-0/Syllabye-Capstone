@@ -1,9 +1,29 @@
+/*---+---+---+--Start of AboutPage.jsx Block---+---+---+--*/
+
+/**
+ * AboutPage.jsx - The About Page Component
+ * Displays information about the application and development team
+ * Features:
+ * - Multilingual content support
+ * - Team member carousel
+ * - Language switching
+ */
+
 import "./AboutPage.css";
 import { useTranslation } from 'react-i18next';
 import "bootstrap/dist/css/bootstrap.min.css";
 import TeamCarousel from '../components/TeamCarousel';
-import React from 'react'; // Explicit React import
+import React from 'react';
 
+/*---+---+---+--Start of Team Data Block---+---+---+--*/
+/**
+ * currentTeamMembers - Team Member Information
+ * Contains image paths, names, and links for all team members
+ * Organized by:
+ * - Current team
+ * - The Dev Den members
+ * - Previous members
+ */
 const currentTeamMembers = [
   // Current Team
   { imgSrc: "/images/ChairForceOne-Logo.png", name: "chair", link: "https://github.com/ChairForce-1-0/Syllabye-Capstone" },
@@ -28,26 +48,34 @@ const currentTeamMembers = [
   { imgSrc: "/images/vykle.jpg", name: "vy", link: "#" },
   { imgSrc: "/images/other-kevin.png", name: "kevinZ", link: "#" }
 ];
+/*---+---+---+--End of Team Data Block---+---+---+--*/
 
+
+/*---+---+---+--Start of About Component Block---+---+---+--*/
 const About = () => {
   const { t, i18n } = useTranslation();
 
-  // Memoize to prevent unnecessary re-renders
+  /**
+   * teamMembersCarousel - Localized Team Data
+   * Maps team member data with translated names and descriptions
+   * Memoized to prevent unnecessary re-renders
+   */
   const teamMembersCarousel = React.useMemo(() => 
     currentTeamMembers.map(member => ({
       ...member,
       name: t(`team.members.${member.name}.name`),
       role: t(`team.members.${member.name}.description`)
     })),
-  [t]); // Re-run when translations change
+  [t]);
 
+  // Handles language switching between English and Spanish
   const switchLanguage = (lang) => {
     i18n.changeLanguage(lang);
   };
 
   return (
     <div className="about-page">
-      {/* Language toggle - move styles to CSS */}
+      {/*---+---+---+--Start of Language Toggle Block---+---+---+--*/}
       <div className="language-toggle">
         <button 
           onClick={() => switchLanguage('en')}
@@ -62,21 +90,24 @@ const About = () => {
           Español
         </button>
       </div>
+      {/*---+---+---+--End of Language Toggle Block---+---+---+--*/}
 
       <div className="about-container">
         <div className="about-text-container">
+          {/*---+---+---+--Start of About Content Block---+---+---+--*/}
           <h1 className="about-title">{t('about.title')}</h1>
           <p className="about-description">
             {t('about.description')}
           </p>
 
-          {/* Section grouping for better semantics */}
+          {/* How To Use Section */}
           <section aria-labelledby="how-to-use">
             <h2 className="about-subtitle" id="how-to-use">
               {t('about.howToUse')}
             </h2>
           </section>
 
+          {/* Professors Section */}
           <section aria-labelledby="professors-section">
             <h2 className="about-subtitle" id="professors-section">
               {t('about.professors')}
@@ -89,6 +120,7 @@ const About = () => {
             </p>
           </section>
 
+          {/* Students Section */}
           <section aria-labelledby="students-section">
             <h2 className="about-subtitle" id="students-section">
               {t('about.students')}
@@ -97,10 +129,11 @@ const About = () => {
               {t('about.studentsDesc')}
             </p>
           </section>
+          {/*---+---+---+--End of About Content Block---+---+---+--*/}
         </div>
       </div>
 
-      {/* Team Section - Add aria label */}
+      {/*---+---+---+--Start of Team Section Block---+---+---+--*/}
       <section 
         className="about-team"
         aria-label="Team members carousel"
@@ -113,8 +146,12 @@ const About = () => {
           key={i18n.language} // Force re-render on language change
         />
       </section>
+      {/*---+---+---+--End of Team Section Block---+---+---+--*/}
     </div>
   );
 };
+/*---+---+---+--End of About Component Block---+---+---+--*/
 
 export default About;
+
+/*---+---+---+--End of AboutPage.jsx Block---+---+---+--*/

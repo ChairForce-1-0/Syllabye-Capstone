@@ -1,5 +1,22 @@
+/*---+---+---+--Start of i18n.js Block---+---+---+--*/
+
+/**
+ * i18n.js - The Translation System
+ * This file handles all multilingual content for the application
+ * supporting both English and Spanish languages.
+ */
+
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+
+/*---+---+---+--Start of Translation Content Block---+---+---+--*/
+/**
+ * resources - All Application Text Content
+ * Organized by:
+ * - Language (en/es)
+ * - Component/section
+ * - Individual text strings
+ */
 
 const resources = {
   en: {
@@ -582,13 +599,24 @@ const resources = {
   },
 };
 
+/*---+---+---+--End of Translation Content Block---+---+---+--*/
+
+
+/*---+---+---+--Start of Translation Setup Block---+---+---+--*/
+/**
+ * Initializes the translation system with:
+ * - Translation resources
+ * - Default language (English)
+ * - Basic configuration
+ */
 i18n.use(initReactI18next).init({
   resources,
-  lng: "en", // default language
-  fallbackLng: "en",
+  lng: "en", // Default language
+  fallbackLng: "en", // Fallback language
   interpolation: {
-    escapeValue: false,
+    escapeValue: false, // Allows HTML in translations
   },
 });
+/*---+---+---+--End of Translation Setup Block---+---+---+--*/
 
-export default i18n;
+export default i18n; // Make translation system available app-wide

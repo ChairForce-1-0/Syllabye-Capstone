@@ -1,14 +1,30 @@
-import React, { useState, useEffect } from "react"; //This shows up as an error but it is not an error.
+/*---+---+---+--Start of BrowsePdfs.jsx Block---+---+---+--*/
+
+/**
+ * BrowsePdfs.jsx - PDF Browser Component
+ * Displays all available syllabi PDFs stored in Firebase
+ * Features:
+ * - Fetches PDF list from Firebase Storage
+ * - Displays downloadable PDF links
+ * - Supports multilingual content
+ */
+
+import React, { useState, useEffect } from "react";
 import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 import { storage } from "../Firebase";
 import { useTranslation } from "react-i18next";
 import "./BrowsePdfs.css";
-import "./AboutPage.css"; // <- bring in styles for language toggle
+import "./AboutPage.css"; // Shared language toggle styles
 
 const BrowsePdfs = () => {
   const [pdfFiles, setPdfFiles] = useState([]);
-  const { t, i18n } = useTranslation(); // This shows up as an error but it is not an error.
+  const { t, i18n } = useTranslation(); //If you get an error here, this is false. i18n is actualy used
 
+  /*---+---+---+--Start of PDF Fetching Block---+---+---+--*/
+  /**
+   * Fetches PDF files from Firebase Storage
+   * Runs once when component mounts
+   */
   useEffect(() => {
     const fetchPdfs = async () => {
       const storageRef = ref(storage, "pdfs/");
@@ -28,16 +44,11 @@ const BrowsePdfs = () => {
 
     fetchPdfs();
   }, []);
+  /*---+---+---+--End of PDF Fetching Block---+---+---+--*/
 
   return (
-
-    
-
-
-
     <div className="pdf-container">
-    
-
+      {/*---+---+---+--Start of PDF List Block---+---+---+--*/}
       <h2 className="title">{t("browsePdfs.title")}</h2>
 
       <div className="pdf-list">
@@ -64,8 +75,11 @@ const BrowsePdfs = () => {
           <p>{t("browsePdfs.noPdfs")}</p>
         )}
       </div>
+      {/*---+---+---+--End of PDF List Block---+---+---+--*/}
     </div>
   );
 };
 
 export default BrowsePdfs;
+
+/*---+---+---+--End of BrowsePdfs.jsx Block---+---+---+--*/

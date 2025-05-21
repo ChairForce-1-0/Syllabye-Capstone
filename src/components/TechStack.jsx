@@ -1,12 +1,26 @@
-// src/components/TechStack.jsx
+/*---+---+---+--Start of TechStack.jsx Block---+---+---+--*/
+
+/**
+ * TechStack.jsx - Technology Stack Carousel Component
+ * This component:
+ * - Displays a responsive carousel of technology logos
+ * - Supports internationalization for alt text and labels
+ * - Includes GitHub repository link
+ * - Auto-plays with responsive breakpoints
+ */
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./TechStack.css";
-import { useTranslation } from "react-i18next"; // <-- import the hook
+import { useTranslation } from "react-i18next";
 
+/*---+---+---+--Start of Tech Logos Data Block---+---+---+--*/
+/**
+ * techLogos - Technology Logo Definitions
+ * Contains image paths and translation keys for all tech stack items
+ */
 const techLogos = [
-  { src: "/images/vs.png", altKey: "vs" },
   { src: "/images/vscode.png", altKey: "vscode" },
   { src: "/images/css.png", altKey: "css" },
   { src: "/images/html.png", altKey: "html" },
@@ -18,10 +32,22 @@ const techLogos = [
   { src: "/images/git.png", altKey: "git" },
   { src: "/images/firebase.png", altKey: "firebase" },
 ];
+/*---+---+---+--End of Tech Logos Data Block---+---+---+--*/
 
+
+/*---+---+---+--Start of Main Component Block---+---+---+--*/
+/**
+ * TechStack - Technology Stack Display Component
+ * @returns {JSX.Element} - Responsive carousel of technology logos
+ */
 const TechStack = () => {
-  const { t } = useTranslation(); // get the translation function
+  const { t } = useTranslation();
 
+  /*---+---+---+--Start of Slider Settings Block---+---+---+--*/
+  /**
+   * settings - Carousel Configuration
+   * Defines behavior and responsiveness of the logo carousel
+   */
   const settings = {
     dots: false,
     infinite: true,
@@ -37,6 +63,7 @@ const TechStack = () => {
       { breakpoint: 480, settings: { slidesToShow: 2 } },
     ],
   };
+  /*---+---+---+--End of Slider Settings Block---+---+---+--*/
 
   return (
     <section id="tech-stack" className="content-block">
@@ -44,8 +71,8 @@ const TechStack = () => {
         className="container"
         style={{ marginBottom: "-18%", paddingBottom: "0px" }}
       >
+        {/* Header with Title and GitHub Button */}
         <header className="block-headge">
-          {/* Replace hard-coded text with translated strings */}
           <h1>{t("techStack.title")}</h1>
           <a
             href="https://github.com/ChairForce-1-0/Syllabye-Capstone"
@@ -55,10 +82,12 @@ const TechStack = () => {
           </a>
         </header>
 
+        {/* Subtitle */}
         <strong>
           <p className="tech-subtitle">{t("techStack.subtitle")}</p>
         </strong>
 
+        {/* Logo Carousel */}
         <div className="slider-fade-wrapper">
           <div className="slider-container">
             <Slider {...settings}>
@@ -79,5 +108,7 @@ const TechStack = () => {
     </section>
   );
 };
+/*---+---+---+--End of Main Component Block---+---+---+--*/
 
 export default TechStack;
+/*---+---+---+--End of TechStack.jsx Block---+---+---+--*/
